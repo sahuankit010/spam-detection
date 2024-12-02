@@ -134,6 +134,6 @@ If you have any questions or need further information, feel free to contact me.
 
 - **Name**: Ankit Sahu
 - **Email**: sahu.ankit010.work@gmail.com
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/sahuankit010/)
+- **LinkedIn**: (https://www.linkedin.com/in/sahuankit010/)
 
 
