@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "2d53f754-b664-4e34-9138-e82a6f8edf50",
+		"name": "Spam Detector",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10349769"
+	},
+	"item": [
+		{
+			"name": "AUTH CONTROLLER",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ujwal Shah\",\n  \"phoneNumber\": \"8881214444\",\n  \"password\": \"ankit12345\",\n  \"email\": \"as1@gmail.com\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phoneNumber\": \"8881214444\",\n  \"password\": \"ankit12345\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SEARCH",
+			"item": [
+				{
+					"name": "Search Name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4ODgxMjE0NDQ0IiwiaWF0IjoxNzMzMDMxNTkzLCJleHAiOjE3MzMxMTc5OTN9.TMcErWaGdrZYyawHrBXID9Xu_eYI6EHMFw7NvM7i8WqZW6Dwhm6cBchQkwoHi_-3aftbcPLVFjR99q7aa9va5g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/search/name?query=Dusti",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"search",
+								"name"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "Dusti"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Phone",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4ODgxMjE0NDQ0IiwiaWF0IjoxNzMzMDMxNTkzLCJleHAiOjE3MzMxMTc5OTN9.TMcErWaGdrZYyawHrBXID9Xu_eYI6EHMFw7NvM7i8WqZW6Dwhm6cBchQkwoHi_-3aftbcPLVFjR99q7aa9va5g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/search/phone?phoneNumber=8881214444",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"search",
+								"phone"
+							],
+							"query": [
+								{
+									"key": "phoneNumber",
+									"value": "8881214444"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SPAM",
+			"item": [
+				{
+					"name": "Report",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4ODgxMjE0NDQ0IiwiaWF0IjoxNzMzMDMxNTkzLCJleHAiOjE3MzMxMTc5OTN9.TMcErWaGdrZYyawHrBXID9Xu_eYI6EHMFw7NvM7i8WqZW6Dwhm6cBchQkwoHi_-3aftbcPLVFjR99q7aa9va5g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reportedPhoneNumber\": \"3629445952\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/spam/report",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"spam",
+								"report"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Likelihood",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
