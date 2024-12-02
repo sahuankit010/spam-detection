@@ -47,8 +47,8 @@ Command Line Steps:
 2. **Run the Application**:
 
    ```bash
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
-```
+   mvn spring-boot:run -Dspring-boot.run.profiles=dev
+   ```
 
 ## API Endpoints
 
@@ -114,6 +114,7 @@ Get Spam Likelihood
 
 GET /spam/likelihood?phoneNumber=5559876543
 
+```
 
 ## Technologies Used
 
