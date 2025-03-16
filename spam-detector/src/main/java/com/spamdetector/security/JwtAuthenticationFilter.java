@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @Component
 
@@ -21,6 +22,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtTokenUtil jwtTokenUtil;
     private final CustomUserDetailsService userDetailsService; // Use CustomUserDetailsService
+
+    private static final String[] EXCLUDE_URLS = {
+            "/actuator/health",
+            "/actuator/info",
+            "/actuator/prometheus" // Add other Actuator endpoints as needed
+    };
 
     @Autowired
     public JwtAuthenticationFilter(JwtTokenUtil jwtTokenUtil, CustomUserDetailsService userDetailsService) {
@@ -31,6 +38,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
+        // Exclude URLs from JWT authentication
+        String path = request.getRequestURI();
+
+        // Exclude Actuator endpoints from JWT processing
+        if (Arrays.stream(EXCLUDE_URLS).anyMatch(path::equals)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         final String authorizationHeader = request.getHeader("Authorization");
 

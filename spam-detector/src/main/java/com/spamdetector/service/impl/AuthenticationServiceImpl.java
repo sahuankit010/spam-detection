@@ -33,7 +33,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
 
-
     @Override
     public String login(String phoneNumber, String password) {
         // Perform authentication

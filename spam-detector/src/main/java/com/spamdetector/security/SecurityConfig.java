@@ -21,7 +21,7 @@ public class SecurityConfig {
     private final CustomUserDetailsService userDetailsService;
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter, CustomUserDetailsService userDetailsService) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-        this.userDetailsService = userDetailsService;
+        this.userDetailsService = userDetailsService;   
     }
 
     // SecurityFilterChain for HTTP security configuration
@@ -35,6 +35,11 @@ public class SecurityConfig {
                 // Authorize requests
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/auth/**").permitAll() // Allow these URLs
+                        // Permit specific Actuator endpoints
+                        .requestMatchers("/actuator/health", "/actuator/info").permitAll()
+
+                        // Secure other Actuator endpoints, requiring ADMIN role
+                        .requestMatchers("/actuator/**").hasRole("ADMIN")
                         .anyRequest().authenticated() // Protect all other URLs
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // Add JWT filter before authentication
@@ -47,11 +52,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // AuthenticationManager bean configuration (Spring Security 6.x)
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-//        return authenticationConfiguration.getAuthenticationManager();
-//    }
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
