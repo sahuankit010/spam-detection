@@ -30,6 +30,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public UserProfileDTO register(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO) {
+
+        System.out.println(this.jwtTokenUtil);
         return authenticationService.registerUser(userRegistrationDTO);
     }
 }
